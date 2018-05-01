@@ -9,6 +9,7 @@
     "src": "src"
   },
   "scripts": {
+    "prestart": "rm -rf ./output/*.json",
     "start": "babel-node src/index.js  --presets=env,stage-0",
     "upgradeDeps": "ncu -u"
   },

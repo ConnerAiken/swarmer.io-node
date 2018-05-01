@@ -23,78 +23,70 @@
 
 var system = require("system"),
     page = require("webpage").create(), 
+    utils = require('./../helpers/agent.utils'),
     logResources = true;
- 
+  
 ////////////////////////////////////////////////////////////////////////////////
 
-page.onInitialized = function() {
-    console.log("page.onInitialized");
-    printArgs.apply(this, arguments);
+page.onInitialized = function() { 
+    utils.logger.log('events', {event: "page.onInitialized", timestamp: utils.getUnix()}); 
 };
 page.onLoadStarted = function() {
-    console.log("page.onLoadStarted");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onLoadStarted", timestamp: utils.getUnix()}); 
 };
 page.onLoadFinished = function() {
-    console.log("page.onLoadFinished");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onLoadFinished", timestamp: utils.getUnix()}); 
 };
 page.onUrlChanged = function() {
-    console.log("page.onUrlChanged");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onUrlChanged",  timestamp: utils.getUnix()}); 
 };
 page.onNavigationRequested = function() {
-    console.log("page.onNavigationRequested");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onNavigationRequested",  timestamp: utils.getUnix()}); 
 };
 page.onRepaintRequested = function() {
-    console.log("page.onRepaintRequested");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onRepaintRequested",  timestamp: utils.getUnix()}); 
 };
 
 if (logResources === true) {
     page.onResourceRequested = function() {
-        console.log("page.onResourceRequested");
-        printArgs.apply(this, arguments);
+        utils.logger.log('events', {event: "page.onResourceReceived",  timestamp: utils.getUnix()}); 
     };
     page.onResourceReceived = function() {
-        console.log("page.onResourceReceived");
-        printArgs.apply(this, arguments);
+        utils.logger.log('events', {event: "page.onResourceReceived",  timestamp: utils.getUnix()}); 
     };
 }
 
 page.onClosing = function() {
-    console.log("page.onClosing");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onClosing",  timestamp: utils.getUnix()}); 
 };
 
 // window.console.log(msg);
 page.onConsoleMessage = function() {
-    console.log("page.onConsoleMessage");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onConsoleMessage",  timestamp: utils.getUnix()}); 
 };
 
 // window.alert(msg);
 page.onAlert = function() {
-    console.log("page.onAlert");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onAlert",  timestamp: utils.getUnix()}); 
 };
 // var confirmed = window.confirm(msg);
 page.onConfirm = function() {
-    console.log("page.onConfirm");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onConfirm",  timestamp: utils.getUnix()}); 
 };
 // var user_value = window.prompt(msg, default_value);
 page.onPrompt = function() {
-    console.log("page.onPrompt");
-    printArgs.apply(this, arguments);
+    utils.logger.log('events', {event: "page.onPrompt",  timestamp: utils.getUnix()}); 
 };
 
 var globals = {
     baseUrl: system.args[1]
 };
-////////////////////////////////////////////////////////////////////////////////   
-console.log("### STEP 1: Load '" + globals.baseUrl + "'");
+////////////////////////////////////////////////////////////////////////////////  
+utils.logger.log('activity', "### STEP 1: Load '" + globals.baseUrl + "'");
+
 page.open(globals.baseUrl);
+
+
+utils.logger.log('events', "page.close");
 page.close();
 phantom.exit();

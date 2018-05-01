@@ -5,12 +5,12 @@ import './helpers/bootstrap';
 // ====================== 
 const config = {
     baseUrl: process.env.baseUrl,
-    paths = {
+    paths: {
         smokeTest: path.resolve(process.cwd(), 'src', 'scenarios', 'smoke.js')
     }  
 };
 
-const program = phantomjs.exec(config.paths.smokeTest, config.baseUrl);
+const program = phantomjs.exec(config.paths.smokeTest, config.baseUrl);  
 // ====================================
 // Program Flow
 // ====================== 
@@ -19,7 +19,7 @@ utils.log("Opening test at "+config.paths.smokeTest+" and passing "+config.baseU
 program.stdout.pipe(process.stdout);
 program.stderr.pipe(process.stderr);
 
-program.on('exit', code => {
+program.on('exit', code => { 
     // do something on end
-    console.log("Done with phantomjs");
+    utils.log("Done! You may now close the program"); 
 })
