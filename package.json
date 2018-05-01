@@ -34,7 +34,10 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "dependencies": {
+    "phantomjs-prebuilt": "^2.1.16",
     "dotenv": "^5.0.1",
     "express": "^4.16.3"
   }

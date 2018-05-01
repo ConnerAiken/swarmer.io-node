@@ -14,4 +14,4 @@ RUN chmod +x boot.sh
  
 
 EXPOSE 8080
-ENTRYPOINT [ "./boot.sh" ]
+ENTRYPOINT [ "./scripts/boot.sh" ]
