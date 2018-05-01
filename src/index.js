@@ -1,15 +1,20 @@
-import './helpers/bootstrap'; 
-const phantomjs = require('phantomjs-prebuilt'); 
-const paths = {
-    smokeTest: path.resolve(process.cwd(), 'src', 'scenarios', 'smoke.js')
-}  
-const globals = {
-    baseUrl: process.env.baseUrl
+import './helpers/bootstrap';  
+
+// ====================================
+// Declarations
+// ====================== 
+const config = {
+    baseUrl: process.env.baseUrl,
+    paths = {
+        smokeTest: path.resolve(process.cwd(), 'src', 'scenarios', 'smoke.js')
+    }  
 };
 
-
-utils.log("Opening test at "+paths.smokeTest+" and passing "+globals.baseUrl); 
-var program = phantomjs.exec(paths.smokeTest, globals.baseUrl) 
+const program = phantomjs.exec(config.paths.smokeTest, config.baseUrl);
+// ====================================
+// Program Flow
+// ====================== 
+utils.log("Opening test at "+config.paths.smokeTest+" and passing "+config.baseUrl);  
 
 program.stdout.pipe(process.stdout);
 program.stderr.pipe(process.stderr);

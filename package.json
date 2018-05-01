@@ -37,8 +37,9 @@
     "babel-preset-stage-0": "^6.24.1"
   },
   "dependencies": {
-    "phantomjs-prebuilt": "^2.1.16",
     "dotenv": "^5.0.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "jsonfile": "^4.0.0",
+    "phantomjs-prebuilt": "^2.1.16"
   }
 }

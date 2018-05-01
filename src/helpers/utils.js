@@ -1,12 +1,18 @@
 export default {
-    log(msg, type = 0) {
+    log(msg, type = 0, path = path.resolve(process.cwd(), 'output')) {  
         if(type === 1) {
             console.warn(`[${process.env.appName}] ${msg}`);
+            logPath = path.resolve(logPath, 'warnings.txt');
         }else if(type === 2) {
             console.error(`[${process.env.appName}] ${msg}`);
+            logPath = path.resolve(logPath, 'errors.txt');
         }else {
             console.log(`[${process.env.appName}] ${msg}`);
-        }
+            logPath = path.resolve(logPath, 'general.txt');
+        } 
+        
+        // Todo: Promise
+        fs.writeFileSync(logPath, msg);
     },
     loadENV() {
         const defaultConfig = dotenv.config({
