@@ -1,13 +1,20 @@
-import './helpers/bootstrap';
+import './helpers/bootstrap'; 
+const phantomjs = require('phantomjs-prebuilt'); 
+const paths = {
+    smokeTest: path.resolve(process.cwd(), 'src', 'scenarios', 'smoke.js')
+}  
+const globals = {
+    baseUrl: process.env.baseUrl
+};
 
-const app = express();
 
-app.use(express.static(path.resolve(process.cwd(), 'public')))
+utils.log("Opening test at "+paths.smokeTest+" and passing "+globals.baseUrl); 
+var program = phantomjs.exec(paths.smokeTest, globals.baseUrl) 
 
-app.get('/api', (req, res) => {
-    res.send('Express to the rescue!');
-});
+program.stdout.pipe(process.stdout);
+program.stderr.pipe(process.stderr);
 
-app.listen(process.env.port, () => {
-    utils.log(`Server has started and is listening on port ${process.env.port}!`)
-});
+program.on('exit', code => {
+    // do something on end
+    console.log("Done with phantomjs");
+})

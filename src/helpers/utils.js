@@ -10,7 +10,7 @@ export default {
     },
     loadENV() {
         const defaultConfig = dotenv.config({
-            path: path.resolve(process.cwd(), '.env.default')
+            path: path.resolve(process.cwd(), '.env')
         });
         const config = dotenv.config(); 
 

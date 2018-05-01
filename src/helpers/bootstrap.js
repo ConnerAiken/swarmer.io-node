@@ -8,5 +8,5 @@ global.path = path;
 global.dotenv = dotenv;
 global.utils = utils;
 global.express = express;
-
-utils.loadENV();
+ 
+utils.loadENV(); 
