@@ -1,12 +1,5 @@
-import express from 'express';
-import utils from "./helpers/utils.js";
-import path from "path";
-import dotenv from "dotenv";
+import './helpers/bootstrap';
 
-global.path = path;
-global.dotenv = dotenv;
-
-utils.loadENV();
 const app = express();
 
 app.use(express.static(path.resolve(process.cwd(), 'public')))
