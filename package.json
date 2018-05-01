@@ -9,7 +9,7 @@
     "src": "src"
   },
   "scripts": {
-    "start": "babel-node src/server/index.js  --presets=env,stage-0",
+    "start": "babel-node src/index.js  --presets=env,stage-0",
     "upgradeDeps": "ncu -u"
   },
   "repository": {
