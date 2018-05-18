@@ -18,24 +18,13 @@ export default {
         res.status(500);
         res.render('error', { error: err })  ;
     },
-    log(msg, type = 0) { 
-        var slack = global.slack ? global.slack : {send: () => false};
- 
+    log(msg, type = 0) {  
         if(type === 1) {
-            console.warn(`[${process.env.appName}] ${msg}`); 
-                slack.send({
-                    text: msg,  
-                    icon_emoji: ':scream_cat:'
-                }); 
+            console.warn(`[${process.env.appName}] ${msg}`);  
         }else if(type === 2) {
-            console.error(`[${process.env.appName}] ${msg}`);
-            slack.send({
-                text: msg,  
-                icon_emoji: ':scream_cat:'
-            });
+            console.error(`[${process.env.appName}] ${msg}`); 
         }else {
-            console.log(`[${process.env.appName}] ${msg}`);
-            slack.send(msg);
+            console.log(`[${process.env.appName}] ${msg}`); 
         }
     },
     loadENV() {

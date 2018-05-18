@@ -39,8 +39,6 @@
   },
   "dependencies": {
     "dotenv": "^5.0.1",
-    "express": "^4.16.3",
-    "jsonfile": "^4.0.0",
-    "phantomjs-prebuilt": "^2.1.16"
+    "express": "^4.16.3"
   }
 }
