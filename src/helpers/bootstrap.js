@@ -1,20 +1,36 @@
+import utils from "./utils.js";
 import path from "path";
 import dotenv from "dotenv";
-import express from 'express';
-import phantomjs from "phantomjs-prebuilt"; 
-import jsonfile from "jsonfile";
-import fs from "fs";
-import utils from "./utils.js";
- 
+import DigitalOcean from "do-wrapper";
+import express from "express";
+import bodyParser from "body-parser";
+import SlackWebhook from "slack-webhook";
 
-global.path = path;
-global.dotenv = dotenv; 
 global.express = express;
-global.phantomjs = phantomjs;
-global.jsonfile = jsonfile;
-global.fs = fs; 
-
-utils.loadENV(); 
-
+global.path = path;
+global.dotenv = dotenv;
 global.utils = utils;
  
+utils.loadENV(); 
+ 
+global.api = new DigitalOcean(process.env.doApiKey, process.env.doPageSize);
+global.digitalOcean = {
+    account: {},
+    recentActions: [],
+    droplets: [],
+    images: []
+};
+global.slack = new SlackWebhook(process.env.slackWebhook, {
+    defaults: {
+      username: process.env.appName,
+      channel: '#orchestrator-log',
+      icon_emoji: ':robot_face:'
+    }
+}); 
+
+global.app = express();
+global.app.use(bodyParser.json());
+global.app.use(bodyParser.urlencoded({
+    extended: true
+}));
+global.app.use(utils.expressLog); 
